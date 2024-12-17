@@ -1,0 +1,67 @@
+plox.print.indent_print
+=======================
+
+.. py:module:: plox.print.indent_print
+
+.. autoapi-nested-parse::
+
+   Module for indented printing; both automatically and manually.
+
+   .. code-block:: python
+
+       from plox.print import indent_print
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   plox.print.indent_print.indent_print
+   plox.print.indent_print.stack_size
+
+
+Module Contents
+---------------
+
+.. py:function:: indent_print(msg, indent_level = None, indent_char = '|- ')
+
+   Print a message with an appropriately indented prefix.
+
+   .. admonition:: Example
+
+      >>> from plox.print.indent_print import indent_print as printi
+      >>>
+      >>> def test():
+      ...     printi("inside test")
+      >>>
+      >>> def test2():
+      ...     printi("inside test2")
+      ...     test()
+      >>>
+      >>> def test3():
+      ...     printi("This it the inside of test3")
+      ...     test2()
+      ...     test()
+      >>>
+      >>> test3()
+      |- test3():This it the inside of test3
+      |- |- test2():inside test2
+      |- |- |- test():inside test
+      |- |- test():inside test
+
+   :param msg: Message to print.
+   :type msg: :py:class:`str`
+   :param indent_level: Level to print at; if not given, will be determined
+                        automatically by stack/frame depth.
+   :type indent_level: :py:class:`Optional[int]`
+   :param indent_char: Set of chars to prefix the indents with.
+   :type indent_char: :py:class:`str`
+
+
+.. py:function:: stack_size(size = 0)
+
+   Get stack size for caller's frame.
+
+
